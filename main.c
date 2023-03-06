@@ -2,6 +2,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*A biblioteca <limits.h> é uma biblioteca padrão do C que contém macros para fornecer limites para vários tipos de dados.
+Por exemplo, ela define constantes como INT_MAX e INT_MIN que representam o valor máximo e mínimo que um int pode armazenar.
+Isso pode ser útil ao escrever código que precisa lidar com limites de tipos de dados.*/
+
+/*Uma macro é uma sequência de comandos que é substituída por um identificador. Elas são usadas para tornar o código mais
+legível e fácil de manter. Em C, as macros são definidas usando a diretiva de pré-processador #define. Por exemplo, você
+pode definir uma macro para calcular o quadrado de um número da seguinte maneira:
+
+#define SQUARE(x) ((x) * (x))
+Depois de definir a macro, você pode usá-la em seu código como se fosse uma função:
+
+int x = 5;
+int x_squared = SQUARE(x); // 25
+Neste exemplo, a macro SQUARE(x) é substituída pelo código ((x) * (x)) pelo pré-processador antes da compilação.*/
+
+/*As macros podem parecer funções à primeira vista, mas há algumas diferenças importantes entre elas. Uma das principais
+diferenças é que as macros são manipuladas pelo pré-processador, enquanto as funções são manipuladas pelo compilador. Isso
+significa que, quando você usa uma macro, o pré-processador substitui a chamada da macro pelo código da macro antes da
+compilação. Isso pode levar a um código mais rápido, pois não há sobrecarga de chamada de função, mas também pode tornar
+o código mais difícil de ler e depurar.
+Outra diferença importante é que as macros não verificam tipos de dados, enquanto as funções o fazem. Isso significa que você
+pode passar qualquer tipo de dado para uma macro, enquanto uma função só aceitará argumentos do tipo especificado. Isso pode
+levar a erros sutis se você não for cuidadoso ao usar macros. Em resumo, as macros podem ser úteis em algumas situações, mas
+é importante usá-las com cuidado e entender suas limitações.*/
+
 #define MAX_NOS 100
 
 struct No {
