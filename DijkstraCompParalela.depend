@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1678312342 source:f:\dijkstracompparalela\dijkstracompparalela\main.c
+	<limits.h>
+	<stdio.h>
+	<stdlib.h>
+

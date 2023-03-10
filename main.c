@@ -2,28 +2,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*A biblioteca <limits.h> é uma biblioteca padrão do C que contém macros para fornecer limites
-para vários tipos de dados. Ela define constantes como INT_MAX e INT_MIN que representam o valor
-máximo e mínimo que um int pode armazenar. Isso pode ser útil ao escrever código que precisa
-lidar com limites de tipos de dados.*/
+/*A biblioteca <limits.h> é uma biblioteca padrão do C que contém macros para fornecer limites para vários tipos de dados. Ela define constantes como INT_MAX e INT_MIN que representam o valor máximo e mínimo que um int pode armazenar. Isso pode ser útil ao escrever código que precisa lidar com limites de tipos de dados.*/
 
-/*Uma macro é uma sequência de comandos que é substituída por um identificador. Elas são usadas
-para tornar o código mais legível e fácil de manter. Em C, as macros são definidas usando a
-diretiva de pré-processador #define. Por exemplo, você pode definir uma macro para calcular o
-quadrado de um número da seguinte maneira:
+/*As macros são manipuladas pelo pré-processador, enquanto
+as funções são manipuladas pelo compilador. Isso significa que, quando você usa uma macro, o pré-processador substitui a chamada da macro pelo código da macro antes da compilação. Isso pode
+levar a um código mais rápido, pois não há sobrecarga de chamada de função, mas também pode tornar o código mais difícil de ler e depurar.
 
-/*As macros podem parecer funções à primeira vista, mas há algumas diferenças importantes entre
-elas. Uma das principais diferenças é que as macros são manipuladas pelo pré-processador, enquanto
-as funções são manipuladas pelo compilador. Isso significa que, quando você usa uma macro, o
-pré-processador substitui a chamada da macro pelo código da macro antes da compilação. Isso pode
-levar a um código mais rápido, pois não há sobrecarga de chamada de função, mas também pode tornar
-o código mais difícil de ler e depurar.
-
-Outra diferença importante é que as macros não verificam tipos de dados, enquanto as funções o fazem.
-Isso significa que você pode passar qualquer tipo de dado para uma macro, enquanto uma função só
-aceitará argumentos do tipo especificado. Isso pode levar a erros sutis se você não for cuidadoso
-ao usar macros. Em resumo, as macros podem ser úteis em algumas situações, mas é importante usá-las
-com cuidado e entender suas limitações.*/
+Outra diferença importante é que as macros não verificam tipos de dados, enquanto as funções o fazem. Isso significa que você pode passar qualquer tipo de dado para uma macro, enquanto uma função só aceitará argumentos do tipo especificado. Isso pode levar a erros sutis se você não for cuidadoso ao usar macros. Em resumo, as macros podem ser úteis em algumas situações, mas é importante usá-las com cuidado e entender suas limitações.*/
 
 #define MAX_NOS 100
 
@@ -202,6 +187,27 @@ para refletir a sua nova distância. Repita os passos 2-4 até que a fila de prior
 entre o nó inicial e o nó final tenha sido encontrada. Usando uma fila de prioridades, o tempo de execução do algoritmo de
 Dijkstra pode ser reduzido, tornando-o mais eficiente para resolver problemas de caminho mínimo em grafos grandes.*/
 
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define NUM_VERTICES 10
+#define MIN_PESO 1
+#define MAX_PESO 20
+
+int main() {
+    srand(time(NULL)); // inicializa o gerador de números aleatórios
+
+    for (int i = 0; i < NUM_VERTICES; i++) {
+        for (int j = i + 1; j < NUM_VERTICES; j++) {
+            int peso = (rand() % (MAX_PESO - MIN_PESO + 1)) + MIN_PESO; // gera um peso aleatório entre MIN_PESO e MAX_PESO
+            printf("adicionarAresta(grafo, %d, %d, %d);\n", i, j, peso);
+        }
+    }
+
+    return 0;
+}*/
+
 int main() {
     struct Grafo *grafo = criarGrafo(10);
 
@@ -222,7 +228,6 @@ int main() {
     adicionarAresta(grafo, 7, 0, 5);
     adicionarAresta(grafo, 7, 8, 2);
     adicionarAresta(grafo, 8, 6, 3);
-    adicionarAresta(grafo, 0, 1, 2);
     adicionarAresta(grafo, 9, 8, 7);
 
     printf("Grafo resultante:\n");
