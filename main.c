@@ -1,6 +1,8 @@
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include <sys/time.h>
 
 /*A biblioteca <limits.h> é uma biblioteca padrão do C que contém macros para fornecer limites para vários tipos de dados. Ela define constantes como INT_MAX e INT_MIN que representam o valor máximo e mínimo que um int pode armazenar. Isso pode ser útil ao escrever código que precisa lidar com limites de tipos de dados.*/
 
@@ -10,7 +12,10 @@ levar a um código mais rápido, pois não há sobrecarga de chamada de função, mas 
 
 Outra diferença importante é que as macros não verificam tipos de dados, enquanto as funções o fazem. Isso significa que você pode passar qualquer tipo de dado para uma macro, enquanto uma função só aceitará argumentos do tipo especificado. Isso pode levar a erros sutis se você não for cuidadoso ao usar macros. Em resumo, as macros podem ser úteis em algumas situações, mas é importante usá-las com cuidado e entender suas limitações.*/
 
-#define MAX_NOS 100
+#define MAX_NOS 1000
+#define NUM_VERTICES 1000
+#define MIN_PESO 1
+#define MAX_PESO 20
 
 struct No {
   int vertice;
@@ -135,11 +140,19 @@ void dijkstra(struct Grafo *grafo, int iniciar) {
   }
 
   // Imprime as distâncias mais curtas
-  printf("\nDistancias mais curtas do No %d:\n", iniciar);
+  /*printf("\nDistancias mais curtas do No %d:\n", iniciar);
   for (int i = 0; i < grafo->numVertices; i++) {
     printf("No %d: %d\n", i, dist[i]);
-  }
+  }*/
 }
+
+// Função para medir o tempo
+double get_current_time() {
+    struct timeval time;
+    gettimeofday(&time, NULL);
+    return (double) time.tv_sec + (double) time.tv_usec * 1e-6;
+}
+
 
 /*Implementação do algoritmo de Dijkstra. A função dijkstra recebe um ponteiro para um grafo e um nó inicial. Ela
 inicializa as distâncias e o array de visitados, define a distância para o nó inicial como 0 e, em seguida,
@@ -187,53 +200,31 @@ para refletir a sua nova distância. Repita os passos 2-4 até que a fila de prior
 entre o nó inicial e o nó final tenha sido encontrada. Usando uma fila de prioridades, o tempo de execução do algoritmo de
 Dijkstra pode ser reduzido, tornando-o mais eficiente para resolver problemas de caminho mínimo em grafos grandes.*/
 
-/*#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
-#define NUM_VERTICES 10
-#define MIN_PESO 1
-#define MAX_PESO 20
-
 int main() {
-    srand(time(NULL)); // inicializa o gerador de números aleatórios
 
+    struct Grafo *grafo = criarGrafo(NUM_VERTICES);
+    long int numArestas =0;
+    double start, finish;
+
+    srand(time(NULL)); // inicializa o gerador de números aleatórios
     for (int i = 0; i < NUM_VERTICES; i++) {
         for (int j = i + 1; j < NUM_VERTICES; j++) {
-            int peso = (rand() % (MAX_PESO - MIN_PESO + 1)) + MIN_PESO; // gera um peso aleatório entre MIN_PESO e MAX_PESO
-            printf("adicionarAresta(grafo, %d, %d, %d);\n", i, j, peso);
+            int peso = (rand() % (MAX_PESO - MIN_PESO + 1)) +
+                 MIN_PESO; // gera um peso aleatório entre MIN_PESO e MAX_PESO
+            adicionarAresta(grafo, i, j, peso);
+            numArestas++;
         }
     }
 
-    return 0;
-}*/
+    printf("Numero de vertices: %d\n",NUM_VERTICES);
+    printf("Numero de arestas: %li\n",numArestas);
 
-int main() {
-    struct Grafo *grafo = criarGrafo(10);
+    /*
+    start = get_current_time();
+    dijkstra(grafo, 0);
+    finish = get_current_time();
+    printf("Tempo de Execucao de Dijkstra: %f segundos\n", finish - start);*/
 
-  // Exemplo: Grafo - 10 Nós - 16 arestas
-
-    adicionarAresta(grafo, 0, 1, 3);
-    adicionarAresta(grafo, 1, 2, 2);
-    adicionarAresta(grafo, 1, 6, 4);
-    adicionarAresta(grafo, 2, 3, 1);
-    adicionarAresta(grafo, 3, 4, 10);
-    adicionarAresta(grafo, 3, 5, 2);
-    adicionarAresta(grafo, 4, 9, 5);
-    adicionarAresta(grafo, 5, 2, 2);
-    adicionarAresta(grafo, 5, 4, 1);
-    adicionarAresta(grafo, 5, 9, 1);
-    adicionarAresta(grafo, 6, 5, 1);
-    adicionarAresta(grafo, 6, 7, 4);
-    adicionarAresta(grafo, 7, 0, 5);
-    adicionarAresta(grafo, 7, 8, 2);
-    adicionarAresta(grafo, 8, 6, 3);
-    adicionarAresta(grafo, 9, 8, 7);
-
-    printf("Grafo resultante:\n");
-    imprimirGrafo(grafo);
-
-    dijkstra(grafo, 1);
 
     return 0;
 
